@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/caseScale" >
+        <item
+            android:id="@+id/scale2to8"
+            android:title="Из 2 в 8" />
+
+        <item
+            android:id="@+id/scale2to10"
+            android:title="Из 2 в 10" />
+
+        <item
+            android:id="@+id/scale2to16"
+            android:title="Из 2 в 16" />
+
+        <item
+            android:id="@+id/scale8to2"
+            android:title="Из 8 в 2" />
+
+        <item
+            android:id="@+id/scale8to10"
+            android:title="Из 8 в 10" />
+
+        <item
+            android:id="@+id/scale8to16"
+            android:title="Из 8 в 16" />
+
+        <item
+            android:id="@+id/scale10to2"
+            android:title="Из 10 в 2" />
+
+        <item
+            android:id="@+id/scale10to8"
+            android:title="Из 10 в 8" />
+
+        <item
+            android:id="@+id/scale10to16"
+            android:title="Из 10 в 16" />
+
+        <item
+            android:id="@+id/scale16to2"
+            android:title="Из 16 в 2" />
+
+        <item
+            android:id="@+id/scale16to8"
+            android:title="Из 16 в 8" />
+
+        <item
+            android:id="@+id/scale16to10"
+            android:title="Из 16 в 10" />
+    </group>
+</menu>

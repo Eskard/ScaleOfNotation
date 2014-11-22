@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">"Scale of notation "</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="whatNumb">Введите число:</string>
+    <string name="whatSystem">Выберите направление перевода:</string>
+    <string name="chooseScale">Веберите необходимую систему счисления:</string>
+    <string name="napravlenie">Направление перевода</string>
+    <string name="calc">Рассчитать</string>
+    <string name="scale2">2</string>
+    <string name="scale8">8</string>
+    <string name="scale10">10</string>
+    <string name="scale16">16</string>
+    <string name="btnExit">Exit</string>
+    <string name="answer">Ответ:</string>
+    <string name="edAnsw">0</string>
+    <string name="radioBtn2">2</string>
+    <string name="radioBtn8">8</string>
+    <string name="radioBtn10">10</string>
+    <string name="radioBtn16">16</string>
+    <string name="numbHint">Введите число</string>
+    <string name="answHint">Результат перевода</string>
+</resources>
