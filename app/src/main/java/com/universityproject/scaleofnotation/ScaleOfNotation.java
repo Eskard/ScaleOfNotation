@@ -15,6 +15,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static java.lang.Math.pow;
+
 public class ScaleOfNotation extends Activity implements OnClickListener {
 
     Button popupmenu; //Кнопка вызова выпадающего меню
@@ -67,6 +69,14 @@ public class ScaleOfNotation extends Activity implements OnClickListener {
     public void onClick (View v) {
         String numb;
         String answ;
+        String sResult ="";
+        int intNumb;
+        int temp = 0;
+        int step = 0;
+        int result = 0;
+        int tempRes = 0;
+
+        StringBuilder answer = new StringBuilder();
         switch (v.getId()){
 //Вызов выпадающего меню
             case R.id.btn_menu:
@@ -90,20 +100,29 @@ public class ScaleOfNotation extends Activity implements OnClickListener {
                     toast.show();
                 }
 
-                try {
-                    if (popupmenu.getText() == "Из 2 в 10") {
-                        edAnswer = (TextView) findViewById(R.id.edAnswer);
-                        number = (EditText) findViewById(R.id.edNumber);
-                        numb = number.getText().toString();
-                        answ = Integer.toString(Integer.parseInt(numb, 2));
-                        edAnswer.setText(answ);
-                    }
-                } catch (Exception e) {
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "В двоичной системе счисления используются цифры от 0 до 1",
-                            Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
+                if (popupmenu.getText() == "Из 2 в 10") {
+                    edAnswer = (TextView) findViewById(R.id.edAnswer);
+                    number = (EditText) findViewById(R.id.edNumber);
+                    numb = number.getText().toString();
+                    intNumb = Integer.parseInt(numb);
+                    do {
+                        temp = intNumb % 10;
+                        if ((temp < -1) || (temp > 1)) {
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                "В двоичной системе счисления используются цифры от 0 до 1",
+                                Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                            answ = "";
+                            break;
+                        }
+                        tempRes = (int) (temp * pow(2, step));
+                        result = result + tempRes;
+                        step++;
+                        intNumb = intNumb / 10;
+                        answ = Integer.toString(result);
+                    } while (intNumb != 0);
+                    edAnswer.setText(answ);
                 }
 
                 try{
@@ -143,7 +162,24 @@ public class ScaleOfNotation extends Activity implements OnClickListener {
                         edAnswer = (TextView) findViewById(R.id.edAnswer);
                         number = (EditText) findViewById(R.id.edNumber);
                         numb = number.getText().toString();
-                        answ = Integer.toString(Integer.parseInt(numb, 8));
+                        intNumb = Integer.parseInt(numb);
+                        do {
+                            temp = intNumb % 10;
+                            if ((temp < -7) || (temp > 7)) {
+                                Toast toast = Toast.makeText(getApplicationContext(),
+                                        "В восьмиричной системе счисления используются цифры от 0 до 7",
+                                        Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                                answ = "";
+                                break;
+                            }
+                            tempRes = (int) (temp * pow(8, step));
+                            result = result + tempRes;
+                            step++;
+                            intNumb = intNumb / 10;
+                            answ = Integer.toString(result);
+                        } while (intNumb != 0);
                         edAnswer.setText(answ);
                     }
                 } catch (Exception e) {
@@ -175,8 +211,12 @@ public class ScaleOfNotation extends Activity implements OnClickListener {
                         edAnswer = (TextView) findViewById(R.id.edAnswer);
                         number = (EditText) findViewById(R.id.edNumber);
                         numb = number.getText().toString();
-                        answ = Integer.toBinaryString(Integer.parseInt(numb, 10));
-                        edAnswer.setText(answ);
+                        intNumb = Integer.parseInt(numb);
+                        do {
+                            answer.append(intNumb%2);
+                            intNumb = intNumb/2;
+                        } while (intNumb != 0);
+                        edAnswer.setText(answer.reverse());
                     }
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getApplicationContext(),
@@ -191,8 +231,12 @@ public class ScaleOfNotation extends Activity implements OnClickListener {
                         edAnswer = (TextView) findViewById(R.id.edAnswer);
                         number = (EditText) findViewById(R.id.edNumber);
                         numb = number.getText().toString();
-                        answ = Integer.toOctalString(Integer.parseInt(numb, 10));
-                        edAnswer.setText(answ);
+                        intNumb = Integer.parseInt(numb);
+                        do {
+                            answer.append(intNumb%8);
+                            intNumb = intNumb/8;
+                        } while (intNumb != 0);
+                        edAnswer.setText(answer.reverse());
                     }
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getApplicationContext(),
@@ -207,8 +251,41 @@ public class ScaleOfNotation extends Activity implements OnClickListener {
                         edAnswer = (TextView) findViewById(R.id.edAnswer);
                         number = (EditText) findViewById(R.id.edNumber);
                         numb = number.getText().toString();
-                        answ = Integer.toHexString(Integer.parseInt(numb, 10));
-                        edAnswer.setText(answ);
+                        intNumb = Integer.parseInt(numb);
+                        do {
+                            temp = intNumb %16;
+                            if (temp > 9) {
+                                switch (temp) {
+                                    case 10:
+                                        sResult = sResult + "A";
+                                        break;
+                                    case 11:
+                                        sResult = sResult + "B";
+                                        break;
+                                    case 12:
+                                        sResult = sResult + "C";
+                                        break;
+                                    case 13:
+                                        sResult = sResult + "D";
+                                        break;
+                                    case 14:
+                                        sResult = sResult + "E";
+                                        break;
+                                    case 15:
+                                        sResult = sResult + "F";
+                                        break;
+                                    case 16:
+                                        sResult = sResult + "G";
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            sResult = sResult + temp;
+                            intNumb = intNumb/16;
+                        } while (intNumb != 0);
+                        answer.append(sResult);
+                        edAnswer.setText(answer.reverse());
                     }
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getApplicationContext(),
