@@ -254,7 +254,6 @@ public class ScaleOfNotation extends Activity implements OnClickListener {
                         intNumb = Integer.parseInt(numb);
                         do {
                             temp = intNumb %16;
-                            if (temp > 9) {
                                 switch (temp) {
                                     case 10:
                                         sResult = sResult + "A";
@@ -278,10 +277,9 @@ public class ScaleOfNotation extends Activity implements OnClickListener {
                                         sResult = sResult + "G";
                                         break;
                                     default:
+                                        sResult = sResult + temp;
                                         break;
                                 }
-                            }
-                            sResult = sResult + temp;
                             intNumb = intNumb/16;
                         } while (intNumb != 0);
                         answer.append(sResult);
